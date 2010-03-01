@@ -1,4 +1,6 @@
-= Multiprocessing Examples =
+========================
+Multiprocessing Examples
+========================
 
 This is meant to start a collection of simple examples of how to use Python's multiprocessing module. The exercises are trivial but illustrative for educational purposes.
 
