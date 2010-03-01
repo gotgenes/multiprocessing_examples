@@ -34,6 +34,7 @@ def main(argv):
     if len(args) != 2:
         cli_parser.error("Please provide an input file and output file.")
     infile = open(args[0])
+    in_csvfile = csv.reader(infile)
     outfile = open(args[1], 'w')
     out_csvfile = csv.writer(outfile)
 

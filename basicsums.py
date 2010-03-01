@@ -22,7 +22,7 @@ ARGUMENTS:
     return cli_parser
 
 
-def parse_input_csv(infile):
+def parse_input_csv(csvfile):
     """Parses the input CSV and yields tuples with the index of the row
     as the first element, and the integers of the row as the second
     element.
@@ -30,10 +30,9 @@ def parse_input_csv(infile):
     The index is zero-index based.
 
     :Parameters:
-    - `infile`: a file-like object
+    - `csvfile`: a `csv.reader` instance
 
     """
-    csvfile = csv.reader(infile)
     for i, row in enumerate(csvfile):
         row = [int(entry) for entry in row]
         yield i, row
@@ -79,10 +78,11 @@ def main(argv):
     if len(args) != 2:
         cli_parser.error("Please provide an input file and output file.")
     infile = open(args[0])
+    in_csvfile = csv.reader(infile)
     outfile = open(args[1], 'w')
     out_csvfile = csv.writer(outfile)
     # gets an iterable of rows that's not yet evaluated
-    input_rows = parse_input_csv(infile)
+    input_rows = parse_input_csv(in_csvfile)
     # sends the rows iterable to sum_rows() for results iterable, but
     # still not evaluated
     result_rows = sum_rows(input_rows)
